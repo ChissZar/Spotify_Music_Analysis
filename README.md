@@ -81,7 +81,7 @@ Cách 1: Chạy Web Dashboard (Khuyên dùng)
 Đây là giao diện tương tác chính của đồ án.
 
 ```bash
-streamlit run app.py
+python -m streamlit run app.py
 ```
 
 👉 Trình duyệt sẽ tự động mở tại địa chỉ: http://localhost:8501
@@ -125,5 +125,6 @@ Nếu có bất kỳ câu hỏi nào về source code, vui lòng liên hệ:
 Email: nguyenphuocminhtriet6410@gmail.com
 
 Github: https://github.com/ChissZar
+
 
 Cảm ơn Thầy Cô và các bạn đã quan tâm đến dự án! ❤️
