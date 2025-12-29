@@ -101,13 +101,13 @@ if df is not None:
         t1_col1, t1_col2 = st.columns(2)
         
         with t1_col1:
-            st.markdown("**1. Top Thể loại phổ biến**")
-            fig1, ax1 = plt.subplots(figsize=(10, 6)) # Tăng kích thước hình
-            top_genres = filtered_df['track_genre'].value_counts().head(10)
+            st.markdown("**1. Top Thể loại phổ biến (Theo độ Hot)**")
+            fig1, ax1 = plt.subplots(figsize=(10, 6))
+            top_genres = filtered_df.groupby('track_genre')['popularity'].mean().sort_values(ascending=False).head(10)
             sns.barplot(x=top_genres.index, y=top_genres.values, palette="viridis", ax=ax1)
             ax1.set_xlabel("Thể loại")
-            ax1.set_ylabel("Số lượng")
-            plt.xticks(rotation=45)
+            ax1.set_ylabel("Độ phổ biến trung bình")
+            ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha="right")
             st.pyplot(fig1)
             
         with t1_col2:
@@ -151,4 +151,5 @@ if df is not None:
         st.pyplot(fig6)
 
 else:
+
     st.warning("Chưa có dữ liệu. Vui lòng kiểm tra file dataset.csv")
