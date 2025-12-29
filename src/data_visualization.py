@@ -22,11 +22,11 @@ class DataVisualizer:
 
     def plot_top_genres(self):
         plt.figure(figsize=(10, 6))
-        top_genres = self.df["track_genre"].value_counts().head(10)
+        top_genres = self.df.groupby('track_genre')['popularity'].mean().sort_values(ascending=False).head(10)
         sns.barplot(x=top_genres.index, y=top_genres.values, palette="viridis")
-        plt.title("Top 10 Thể loại nhạc phổ biến nhất")
+        plt.title("Top 10 Thể loại nhạc có Độ phổ biến cao nhất")
         plt.xlabel("Thể loại")
-        plt.ylabel("Số lượng bài hát")
+        plt.ylabel("Độ phổ biến trung bình (0-100)")
         plt.xticks(rotation=45)
         plt.tight_layout()
         self.save_plot("top_genres.png")
@@ -76,4 +76,5 @@ class DataVisualizer:
         sns.boxplot(data=filtered_df, x="track_genre", y="duration_ms", palette="Set2")
         plt.title("Phân bố thời lượng bài hát của Top 10 thể loại")
         plt.xticks(rotation=45)
+
         self.save_plot("duration_boxplot.png")
